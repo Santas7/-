@@ -17,3 +17,13 @@ __HTML__ = BS(__REQUEST__GO__.content, "html.parser") # html codes
 __DATA__ = [] # массив который будет хранить все теги <img>
 __FINDER__ = __HTML__.findAll("img") # нахождение всех тегов <img>
 
+def get_images_url(): # функция получения картинки
+    try: # обработка исключений ( ошибок )
+        os.mkdir("images") # папка сохранения спарсиных изображений
+    except:
+        clear_folder("images") # удаление папки
+    for __EVENT__ in __FINDER__: # прогон по FINDER т.е по всем найденным тегам <img>
+        __IMAGE__URL__ = __EVENT__.get("src") # получаем ссылку из тега <img id="..." class="..." src="link">
+        if(__IMAGE__URL__ != ""): # проверка на пустую ссылку
+            save_image(__IMAGE__URL__) # сохранение картинки
+    print("Nice save images)") # картинки успешно сохранены
