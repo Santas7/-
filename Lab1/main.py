@@ -1,4 +1,4 @@
-import os, requests
+import os, shutil, requests
 from bs4 import BeautifulSoup as BS
 
 __URL__ = "https://yandex.ru/images/" # ссылка на страничку html
@@ -16,6 +16,10 @@ __REQUEST__GO__ = requests.get(__URL__ + "search?text=" + __INPUT__) # полу�
 __HTML__ = BS(__REQUEST__GO__.content, "html.parser") # html codes
 __DATA__ = [] # массив который будет хранить все теги <img>
 __FINDER__ = __HTML__.findAll("img") # нахождение всех тегов <img>
+
+
+def clear_folder(name):  # функция удаления папки
+    shutil.rmtree(name)
 
 def get_images_url(): # функция получения картинки
     try: # обработка исключений ( ошибок )
