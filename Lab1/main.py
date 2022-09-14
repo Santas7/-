@@ -34,7 +34,7 @@ def save_image(__IMAGE__URL__): # функция сохранения карти
     __SAVER__.close() # закрытие файлового потока
 
 def clear_folder(name):  # функция удаления папки
-    shutil.rmtree(name)
+    shutil.rmtree(name) # рекурсивно удаляет все дерево каталогов
 
 def get_images_url(): # функция получения картинки
     try: # обработка исключений ( ошибок )
@@ -48,3 +48,5 @@ def get_images_url(): # функция получения картинки
             save_image(__IMAGE__URL__) # сохранение картинки
     print("Nice save images)") # картинки успешно сохранены
     print(__DATA__)  # вывод ссылок в консоль для пользователя)
+
+get_images_url() # вызов функции
