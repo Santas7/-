@@ -27,6 +27,7 @@ def check_folder():
         os.mkdir("dataset")
     except:
         clear_folder("dataset")
+        os.mkdir("dataset")
 
 def get_images_url(name): # функция получения картинки
     request_go = requests.get(url + "search?text=" + name, headers={"User-Agent":"Mozilla/5.0"}) # получение веб-страницы, после чего можно получить всю необходимую нам информацию от объекта
