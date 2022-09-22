@@ -12,12 +12,6 @@ while(True): # цикл проверки на корректный ввод ст
         print("\nBad(\n") # ввод неудачный(
 
 
-__REQUEST__GO__ = requests.get(__URL__ + "search?text=" + __INPUT__) # получение веб-страницы, после чего можно получить всю необходимую нам информацию от объекта
-__HTML__ = BS(__REQUEST__GO__.content, "html.parser") # html codes
-__DATA__ = [] # массив который будет хранить все теги <img>
-__FINDER__ = __HTML__.findAll("img") # нахождение всех тегов <img>
-
-
 i = 1
 
 def save_image(__IMAGE__URL__): # функция сохранения картинки
@@ -36,17 +30,22 @@ def save_image(__IMAGE__URL__): # функция сохранения карти
 def clear_folder(name):  # функция удаления папки
     shutil.rmtree(name) # рекурсивно удаляет все дерево каталогов
 
+
 def get_images_url(): # функция получения картинки
-    try: # обработка исключений ( ошибок )
-        os.mkdir("images") # папка сохранения спарсиных изображений
-    except:
-        clear_folder("images") # удаление папки
+    __REQUEST__GO__ = requests.get(__URL__ + "search?text=" + name, headers={"User-Agent":"Mozilla/5.0"}) # получение веб-страницы, после чего можно получить всю необходимую нам информацию от объекта
+    __HTML__ = BS(__REQUEST__GO__.content, "html.parser") # html codes
+    __DATA__ = [] # массив который будет хранить все теги <img>
+    __FINDER__ = __HTML__.findAll("img") # нахождение всех тегов <img>
+    os.mkdir("dataset/" + name)
     for __EVENT__ in __FINDER__: # прогон по FINDER т.е по всем найденным тегам <img>
         __IMAGE__URL__ = __EVENT__.get("src") # получаем ссылку из тега <img id="..." class="..." src="link">
         __DATA__.append([__IMAGE__URL__])  # добавление элемента __IMAGE__URL__ в конец списка __DATA__
         if(__IMAGE__URL__ != ""): # проверка на пустую ссылку
-            save_image(__IMAGE__URL__) # сохранение картинки
+            save_image(__IMAGE__URL__, name) # сохранение картинки
     print("Nice save images)") # картинки успешно сохранены
     print(__DATA__)  # вывод ссылок в консоль для пользователя)
+    global i
+    i = 1
+
 
 get_images_url() # вызов функции
