@@ -14,15 +14,15 @@ while(True): # цикл проверки на корректный ввод ст
 
 i = 1
 
-def save_image(__IMAGE__URL__): # функция сохранения картинки
+def save_image(__IMAGE__URL__, name): # функция сохранения картинки
     global i # показываем функции, что i глобальная переменная, а не локальная в самой функции
     __REQUEST__ON__DOWNLOAD__IMAGE__ = requests.get("https:" + __IMAGE__URL__) # получение веб-страницы
     if(i <= 9):
-        __SAVER__ = open("images/" + "000" + str(i) + ".jpg", "wb") # открытие потока с типом wb
+        __SAVER__ = open("dataset/" + name + "/" + "000" + str(i) + ".jpg", "wb") # открытие потока с типом wb
     elif(i >= 10 and i <= 99):
-        __SAVER__ = open("images/" + "00" + str(i) + ".jpg", "wb") # открытие потока с типом wb
+        __SAVER__ = open("dataset/" + name + "/" + "00" + str(i) + ".jpg", "wb") # открытие потока с типом wb
     elif(i >= 100 and i <= 999):
-        __SAVER__ = open("images/" + "0" + str(i) + ".jpg", "wb") # открытие файлового потока с типом mode = "wb" - открывает файл в бинарном режиме только для записи.
+        __SAVER__ = open("dataset/" + name + "/" + "0" + str(i) + ".jpg", "wb") # открытие файлового потока с типом mode = "wb" - открывает файл в бинарном режиме только для записи.
     i += 1
     __SAVER__.write(__REQUEST__ON__DOWNLOAD__IMAGE__.content) # запись в файл
     __SAVER__.close() # закрытие файлового потока
