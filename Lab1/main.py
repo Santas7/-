@@ -54,4 +54,7 @@ def get_images_url(): # функция получения картинки
     i = 1
 
 
-get_images_url() # вызов функции
+check_foler() # проверка на сущестующую папку
+os.mkdir("dataset")# папка сохранения спарсиных изображений
+get_images_url("rose") # вызов функции с "rose"
+get_images_url("tulip") # вызов функции с "tulip"
