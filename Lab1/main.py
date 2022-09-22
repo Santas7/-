@@ -31,6 +31,12 @@ def clear_folder(name):  # функция удаления папки
     shutil.rmtree(name) # рекурсивно удаляет все дерево каталогов
 
 
+def check_folder():
+    try:
+        os.mkdir("dataset")
+    except:
+        clear_folder("dataset")
+
 def get_images_url(): # функция получения картинки
     __REQUEST__GO__ = requests.get(__URL__ + "search?text=" + name, headers={"User-Agent":"Mozilla/5.0"}) # получение веб-страницы, после чего можно получить всю необходимую нам информацию от объекта
     __HTML__ = BS(__REQUEST__GO__.content, "html.parser") # html codes
