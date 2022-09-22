@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup as BS
 
 url = "https://yandex.ru/images/" # ссылка на страничку html
 
-
 i = 1
 
 def save_image(image_url, name): # функция сохранения картинки
@@ -47,6 +46,5 @@ def get_images_url(name): # функция получения картинки
 
 
 check_folder() # проверка на сущестующую папку
-os.mkdir("dataset")# папка сохранения спарсиных изображений
 get_images_url("rose") # вызов функции с "rose"
 get_images_url("tulip") # вызов функции с "tulip"
