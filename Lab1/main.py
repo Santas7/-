@@ -10,14 +10,12 @@ def save_image(image_url, name, i):
     saver.write(request_on_download_image.content)
     saver.close()
 
-def clear_folder(name):
-    shutil.rmtree(name)
 
 def check_folder():
     try:
         os.mkdir("dataset")
     except:
-        clear_folder("dataset")
+        shutil.rmtree("dataset")
         os.mkdir("dataset")
 
 def get_images_url(name):
