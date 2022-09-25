@@ -52,11 +52,15 @@ def get_images_url(name):
     print("Nice save images)")
     print(data)
 
+
+
+
+
+if __name__ == "__main__":
+    check_folder()
+    get_images_url("rose")
+    get_images_url("tulip")
+
 help(get_images_url.__doc__)
 help(save_image.__doc__)
 help(check_folder.__doc__)
-
-check_folder()
-get_images_url("rose")
-get_images_url("tulip")
-
