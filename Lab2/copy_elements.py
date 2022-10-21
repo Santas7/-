@@ -6,6 +6,13 @@ def make_dir(obj: object) -> None:
     """
         проверка на сущ-ю директорию + создание новой директории
     """
+    try:
+        os.mkdir("new_dataset")
+        obj.set_dir_name("new_dataset")
+    except OSError:
+        shutil.rmtree("new_dataset")
+        os.mkdir("new_dataset")
+        obj.set_dir_name("new_dataset")
 
 
 def teleportdir(obj: object) -> None:
