@@ -46,6 +46,15 @@ class Data:
         """
             данная функция предназначена для получения абсолютного или относительного пути
         """
+        try:
+            if event == 0:
+                path = os.path.abspath(f'{self.dir_name}/{self.class_name}/{i:04d}.jpg')
+                return path
+            if event == 1:
+                path = os.path.expanduser(f'{self.dir_name}/{self.class_name}/{i:04d}.jpg')
+                return path
+        except OSError:
+            logging.warning("Error! I can not get path! 0x(((")
 
     def write_in_file_csv(self, data) -> None:
         """
@@ -71,6 +80,14 @@ class Data:
         """
             данная функция нужна для формирования словаря data с путями
         """
+        try:
+            for i in range(999):
+                data["absolute path"].append(self.absolute_or_related(0, i + 1))
+                data["related path"].append(self.absolute_or_related(1, i + 1))
+            data["name"] = self.class_name
+            return data
+        except OSError:
+            logging.warning("Error! I can not get the path of data! 0x(((")
 
     def create_data_for_csv_file(self) -> None:
         """
