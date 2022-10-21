@@ -3,6 +3,8 @@ import csv
 import logging
 import pandas as pd
 
+class_default = ["rose", "tulip"]  # базовые названия
+
 
 class Data:
     class_name: str
@@ -108,4 +110,6 @@ class Data:
 
 
 if __name__ == "__main__":
-    pass
+    for element in range(len(class_default)):
+        obj = Data(class_default[element], "dataset")
+        obj.create_data_for_csv_file()
