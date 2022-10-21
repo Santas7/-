@@ -39,6 +39,22 @@ class Data:
         """
         return self.dir_name
 
+    # 1 пункт л/р
+    def absolute_or_related(self, event, i) -> str:
+        """
+            данная функция предназначена для получения абсолютного или относительного пути
+        """
+
+    def write_in_file_csv(self, data) -> None:
+        """
+            данная функция нужна для сохранения data ( с получ-ми  путями ) в файл .csv
+        """
+
+    def get_data_path(self, data) -> list:
+        """
+            данная функция нужна для формирования списка data с путями
+        """
+
 
 if __name__ == "__main__":
     pass
