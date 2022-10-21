@@ -28,4 +28,5 @@ def create_copy_dataset_with_random_number(obj: object) -> None:
 
 
 if __name__ == "__main__":
-    pass
+    for element in range(len(main.class_default)):
+        create_copy_dataset_with_random_number(Data(main.class_default[element], "dataset"))
