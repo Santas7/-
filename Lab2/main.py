@@ -55,6 +55,18 @@ class Data:
             if event == 1:
                 path = os.path.expanduser(f'{self.dir_name}/{self.class_name}/{i:04d}.jpg')
                 return path
+            if event == 2:
+                path = os.path.abspath(f'{self.dir_name}/{self.class_name}_{i:04d}.jpg')
+                return path
+            if event == 3:
+                path = os.path.expanduser(f'{self.dir_name}/{self.class_name}_{i:04d}.jpg')
+                return path
+            if event == 4:
+                path = os.path.abspath(f'{self.dir_name}/{i:05d}.jpg')
+                return path
+            if event == 5:
+                path = os.path.expanduser(f'{self.dir_name}/{i:05d}.jpg')
+                return path
         except OSError:
             logging.warning("Error! I can not get path! 0x(((")
 
@@ -91,6 +103,16 @@ class Data:
         except OSError:
             logging.warning("Error! I can not get the path of data! 0x(((")
 
+    def get_data_path_w(self, data) -> list:
+        """
+            данная функция нужна для формирования словаря data с путями
+        """
+
+    def get_data_path_w2(self, data) -> list:
+        """
+            данная функция нужна для формирования списка data с путями
+        """
+
     def create_data_for_csv_file(self) -> None:
         """
             данная функция предназначенна для создания словаря data
@@ -101,7 +123,14 @@ class Data:
                 "related path": [],
                 "name": ""
             }
-            data = self.get_data_path(data)
+            if id == 0:
+                data = self.get_data_path(data)
+            if id == 1:
+                data = self.get_data_path_w(data)
+            if id == 2:
+                data = self.get_data_path_w2(data)
+            else:
+                print("error invalid id!")
             df = pd.DataFrame(data)
             print(df)
             self.write_in_file_csv(df)
