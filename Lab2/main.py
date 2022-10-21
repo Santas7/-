@@ -1,5 +1,6 @@
 import os
 import csv
+import logging
 
 
 class Data:
@@ -49,6 +50,21 @@ class Data:
         """
             данная функция нужна для сохранения data ( с получ-ми  путями ) в файл .csv
         """
+        try:
+            with open(f'{self.dir_name}/annotation.csv', 'a', newline='') as file:
+                wr = csv.writer(file)
+                wr.writerow(["absolute path", "relative path", "name"])
+
+                for i in range(999):
+                    wr.writerow([
+                        data["absolute path"][i],
+                        data["related path"][i],
+                        data["name"][i]
+                    ])
+                file.close()
+                pass
+        except OSError:
+            logging.warning("Error! Write in this file is failed! 0x(((")
 
     def get_data_path(self, data) -> list:
         """
