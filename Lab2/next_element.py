@@ -14,15 +14,24 @@ def get_path_of_object_class(obj: object, pointer: str) -> str:
         tmp = []
         text = "" # временная строка
         for row in wr:
-            # tmp.append(row)
-            pass
+            tmp.append(row[1])
         for i in range(len(tmp)):
             if i != 0:
-                # res.append( .. )
-                pass
+                for l in range(len(tmp[i])): # пробежка по-символьно
+                    if tmp[i][l] == ",":  # запятая
+                        count = l
+                        while count + 1 < len(tmp[i]):
+                            count += 1
+                            if tmp[i][count] == ",":
+                                break
+                            else:
+                                text += tmp[i][count]
+                        res.append(text)
+                        text = ""
+                        count = 0
         for path in range(len(res)):
             if res[path] == pointer:
-                pass
+                return "the next-->" + str(res[path + 2])
 
 if __name__ == "__main__":
     pass
