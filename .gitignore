@@ -131,3 +131,7 @@ dmypy.json
 /lab1/.venv/
 /lab1/.idea/
 /lab1/dataset/ 
+
+/lab2/.venv/
+/lab2/.idea/
+/lab2/dataset/ 
