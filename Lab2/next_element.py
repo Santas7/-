@@ -34,4 +34,11 @@ def get_path_of_object_class(obj: object, pointer: str) -> str:
                 return "the next-->" + str(res[path + 2])
 
 if __name__ == "__main__":
-    pass
+    obj = Data("rose", "dataset")
+    s1 = get_path_of_object_class(obj, "dataset/rose/0015.jpg")  # dataset/rose/0016.jpg
+    print(s1)
+
+    obj = Data("tulip", "dataset")
+    s2 = get_path_of_object_class(obj, "dataset/tulip/0443.jpg")  # dataset/tulip/0444.jpg
+    print(s2)
+
