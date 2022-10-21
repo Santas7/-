@@ -44,7 +44,7 @@ class Data:
         return self.dir_name
 
     # 1 пункт л/р
-    def absolute_or_related(self, event, i) -> str:
+    def absolute_or_related(self, event: int, i: int) -> str:
         """
             данная функция предназначена для получения абсолютного или относительного пути
         """
@@ -107,11 +107,28 @@ class Data:
         """
             данная функция нужна для формирования словаря data с путями
         """
+        try:
+            for i in range(999):
+                data["absolute path"].append(self.absolute_or_related(2, i + 1))
+                data["related path"].append(self.absolute_or_related(3, i + 1))
+            data["name"] = self.dir_name
+            return data
+        except OSError:
+            logging.warning("Error! I can not get the path of data! 0x(((")
 
     def get_data_path_w2(self, data) -> list:
         """
             данная функция нужна для формирования списка data с путями
         """
+        try:
+            # print(len(self.n_data))
+            for i in range(len(self.n_data)):
+                data["absolute path"].append(self.absolute_or_related(4, self.n_data[i]))
+                data["related path"].append(self.absolute_or_related(5, self.n_data[i]))
+            data["name"] = self.dir_name
+            return data
+        except OSError:
+            logging.warning("Error! I can not get the path of data! 0x(((")
 
     def create_data_for_csv_file(self) -> None:
         """
