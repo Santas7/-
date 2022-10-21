@@ -130,7 +130,7 @@ class Data:
         except OSError:
             logging.warning("Error! I can not get the path of data! 0x(((")
 
-    def create_data_for_csv_file(self) -> None:
+    def create_data_for_csv_file(self, id) -> None:
         """
             данная функция предназначенна для создания словаря data
         """
@@ -158,4 +158,4 @@ class Data:
 if __name__ == "__main__":
     for element in range(len(class_default)):
         obj = Data(class_default[element], "dataset")
-        obj.create_data_for_csv_file()
+        obj.create_data_for_csv_file(0)
