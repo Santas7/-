@@ -1,6 +1,7 @@
 import os
 import csv
 import logging
+import pandas as pd
 
 
 class Data:
@@ -71,10 +72,22 @@ class Data:
             данная функция нужна для формирования словаря data с путями
         """
 
-    def create_data_for_csv_file(self, id) -> None:
+    def create_data_for_csv_file(self) -> None:
         """
             данная функция предназначенна для создания словаря data
         """
+        try:
+            data = {
+                "absolute path": [],
+                "related path": [],
+                "name": ""
+            }
+            data = self.get_data_path(data)
+            df = pd.DataFrame(data)
+            print(df)
+            self.write_in_file_csv(df)
+        except OSError:
+            logging.warning("Error forming of csv file! 0x(((")
 
 
 if __name__ == "__main__":
