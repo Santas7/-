@@ -13,7 +13,7 @@ class Data:
         """
         self.class_name = class_name
         self.dir_name = dir_name
-        self.n_data = []
+        self.list_numbers = []
 
     def set_class_name(self, new_class_name: str) -> None:
         """
@@ -118,9 +118,9 @@ class Data:
         """
         try:
             # print(len(self.n_data))
-            for i in range(len(self.n_data)):
-                data["absolute path"].append(self.absolute_or_related(4, self.n_data[i]))
-                data["related path"].append(self.absolute_or_related(5, self.n_data[i]))
+            for i in range(len(self.list_numbers)):
+                data["absolute path"].append(self.absolute_or_related(4, self.list_numbers[i]))
+                data["related path"].append(self.absolute_or_related(5, self.list_numbers[i]))
             data["name"] = self.dir_name
             return data
         except OSError:

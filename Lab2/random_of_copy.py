@@ -22,7 +22,7 @@ def create_copy_dataset_with_random_number(obj: object) -> None:
         shutil.copy(os.path.expanduser(f'{later_dir}/{obj.class_name}/{n:05d}.jpg'), obj.dir_name)
         os.rename(f'{later_dir}/{obj.class_name}/{n:05d}.jpg',
                   f'{later_dir}/{obj.class_name}/{i + 1:04d}.jpg')
-        obj.n_data.append(n)
+        obj.list_numbers.append(n)
 
     obj.create_data_for_csv_file(2) # type 2
 
