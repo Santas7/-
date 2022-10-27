@@ -28,6 +28,6 @@ class Iterator:
 if __name__ == "__main__":
     num = int(input("Please input numbers iteration: "))
     path = input("Please input path: ")  # например dataset/rose/0015.jpg
-    it = Iterator(num, Data(main.class_default[0], "dataset"), path)
+    it = Iterator(num, Data(main.CLASS_DEFAULT[0], "dataset"), path)
     for val in it:
         print(val)

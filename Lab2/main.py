@@ -3,7 +3,7 @@ import csv
 import logging
 import pandas as pd
 
-class_default = ["rose", "tulip"]  # базовые названия
+CLASS_DEFAULT = ["rose", "tulip"]  # базовые названия
 
 
 class Data:
@@ -156,6 +156,6 @@ class Data:
 
 
 if __name__ == "__main__":
-    for element in range(len(class_default)):
-        obj = Data(class_default[element], "dataset")
+    for element in range(len(CLASS_DEFAULT)):
+        obj = Data(CLASS_DEFAULT[element], "dataset")
         obj.create_data_for_csv_file(0)

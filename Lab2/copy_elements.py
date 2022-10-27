@@ -35,6 +35,6 @@ def teleportdir(obj: object) -> None:
 
 
 if __name__ == "__main__":
-    for element in range(len(main.class_default)):
-        obj = Data(main.class_default[element], "dataset")
+    for element in range(len(main.CLASS_DEFAULT)):
+        obj = Data(main.CLASS_DEFAULT[element], "dataset")
         teleportdir(obj)
