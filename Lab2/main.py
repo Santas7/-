@@ -7,10 +7,6 @@ CLASS_DEFAULT = ["rose", "tulip"]  # базовые названия
 
 
 class Data:
-    class_name: str
-    dir_name: str  # название директории напр. dataset
-    n_data: str  #
-
     def __init__(self, class_name: str, dir_name: str):
         """
             конструктор с параметром class_name и dir_name ( название папки напр. dataset )
