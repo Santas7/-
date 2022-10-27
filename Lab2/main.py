@@ -15,30 +15,6 @@ class Data:
         self.dir_name = dir_name
         self.list_numbers = []
 
-    def set_class_name(self, new_class_name: str) -> None:
-        """
-            изменение class_name
-        """
-        self.class_name = new_class_name
-
-    def get_class_name(self) -> str:
-        """
-            получение значения class_name
-        """
-        return self.class_name
-
-    def set_dir_name(self, new_dir_name: str) -> None:
-        """
-            изменение dir_name
-        """
-        self.dir_name = new_dir_name
-
-    def get_dir_name(self) -> str:
-        """
-            получение значения dir_name
-        """
-        return self.dir_name
-
     # 1 пункт л/р
     def absolute_or_related(self, event: int, i: int) -> str:
         """

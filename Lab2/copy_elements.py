@@ -22,7 +22,7 @@ def teleportdir(obj: object) -> None:
         данная функция создает новую папку new_dataset и переносит туда каталог class_name со всеми ее под-каталогами
         так что имена новых под-каталогов начинаются с class_name
     """
-    later_dir = obj.get_dir_name()
+    later_dir = obj.dir_name
     make_dir(obj)
     for i in range(999):
         os.rename(f'{later_dir}/{obj.class_name}/{i + 1:04d}.jpg',

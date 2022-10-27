@@ -12,7 +12,7 @@ def create_copy_dataset_with_random_number(obj: object) -> None:
     """
         данная функция копирует файлы класса и переименовывает их рандомно
     """
-    later_dir = obj.get_dir_name()
+    later_dir = obj.dir_name
     ce.make_dir(obj)
 
     for i in range(999):
