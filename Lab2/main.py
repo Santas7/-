@@ -16,29 +16,24 @@ class Data:
         self.list_numbers = []
 
     # 1 пункт л/р
-    def absolute_or_related(self, event: int, i: int) -> str:
+    def absolute_or_related(self, enum: int, i: int) -> str:
         """
             данная функция предназначена для получения абсолютного или относительного пути
         """
         try:
-            if event == 0:
+            if enum == 0:
                 path = os.path.abspath(f'{self.dir_name}/{self.class_name}/{i:04d}.jpg')
-                return path
-            elif event == 1:
+            elif enum == 1:
                 path = os.path.expanduser(f'{self.dir_name}/{self.class_name}/{i:04d}.jpg')
-                return path
-            elif event == 2:
+            elif enum == 2:
                 path = os.path.abspath(f'{self.dir_name}/{self.class_name}_{i:04d}.jpg')
-                return path
-            elif event == 3:
+            elif enum == 3:
                 path = os.path.expanduser(f'{self.dir_name}/{self.class_name}_{i:04d}.jpg')
-                return path
-            elif event == 4:
+            elif enum == 4:
                 path = os.path.abspath(f'{self.dir_name}/{i:05d}.jpg')
-                return path
-            elif event == 5:
+            elif enum == 5:
                 path = os.path.expanduser(f'{self.dir_name}/{i:05d}.jpg')
-                return path
+            return path
         except OSError:
             logging.warning("Error! I can not get path! 0x(((")
 
@@ -102,7 +97,7 @@ class Data:
         except OSError:
             logging.warning("Error! I can not get the path of data! 0x(((")
 
-    def create_data_for_csv_file(self, id) -> None:
+    def create_data_for_csv_file(self, enum) -> None:
         """
             данная функция предназначенна для создания словаря data
         """
@@ -112,11 +107,11 @@ class Data:
                 "related path": [],
                 "name": ""
             }
-            if id == 0:
+            if enum == 0:
                 data = self.get_data_path(data)
-            if id == 1:
+            elif enum == 1:
                 data = self.get_data_path_w(data)
-            if id == 2:
+            elif enum == 2:
                 data = self.get_data_path_w2(data)
             else:
                 print("error invalid id!")
