@@ -22,15 +22,15 @@ def get_path_of_object_class(obj: type(Data), pointer: str) -> str:
                         count = l
                         while count + 1 < len(tmp[i]):
                             count += 1
-                            if tmp[i][count] == ",":
+                            if tmp[i][count] == ",": # если встретили запятую то выхожим из цикла
                                 break
                             else:
                                 text += tmp[i][count]
                         res.append(text)
                         text = ""
                         count = 0
-        for path in range(len(res)):
-            if res[path] == pointer:
+        for path in range(len(res)): # пробежка по результируещему списку
+            if res[path] == pointer: # если данный маркер (pointer) совпадает с res[path] выводим нект элемент
                 return "the next-->" + str(res[path + 2])
 
 if __name__ == "__main__":

@@ -10,6 +10,7 @@ class Data:
     def __init__(self, class_name: str, dir_name: str):
         """
             конструктор с параметром class_name и dir_name ( название папки напр. dataset )
+            :list_numbers: - список который в дальнейшем будет хранить в себе все рандомно сгенирируемые числа ( пункт 3 )
         """
         self.class_name = class_name
         self.dir_name = dir_name
@@ -19,6 +20,9 @@ class Data:
     def absolute_or_related(self, enum: int, i: int) -> str:
         """
             данная функция предназначена для получения абсолютного или относительного пути
+            :i: - индекс который передается из функций get_data_path
+            :enum: - переменная которая нужно просто для конструкции if-else
+            :path: - возвращаемый путь ( абсолютный или относительный )
         """
         try:
             path = ""
@@ -59,6 +63,7 @@ class Data:
     def get_data_path(self, data, enum) -> list:
         """
             данная функция нужна для формирования словаря data с путями
+            :enum: - переменная которая работает также как и в create_data_for_csv_file
         """
         try:
             if enum == 0:
@@ -81,6 +86,9 @@ class Data:
     def create_data_for_csv_file(self, enum) -> None:
         """
             данная функция предназначенна для создания словаря data
+            :enum: - переменная которая необходима для оперд-я типа которая в дальнейшем необходима для понятия
+                     по какому if идти при формировании словаря data ( нужна только для if-else )
+
         """
         try:
             data = {

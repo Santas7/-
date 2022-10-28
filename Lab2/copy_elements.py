@@ -22,6 +22,7 @@ def teleport_dir(obj: type(Data)) -> None:
     """
         данная функция создает новую папку new_dataset и переносит туда каталог class_name со всеми ее под-каталогами
         так что имена новых под-каталогов начинаются с class_name
+        :later_dir: - предыдущая директория ( нужно сохранить )
     """
     later_dir = obj.dir_name
     make_dir(obj)
