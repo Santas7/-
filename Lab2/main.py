@@ -21,6 +21,7 @@ class Data:
             данная функция предназначена для получения абсолютного или относительного пути
         """
         try:
+            path = ""
             if enum == 0:
                 path = os.path.abspath(f'{self.dir_name}/{self.class_name}/{i:04d}.jpg')
             elif enum == 1:
@@ -35,7 +36,7 @@ class Data:
                 path = os.path.expanduser(f'{self.dir_name}/{i:05d}.jpg')
             return path
         except OSError:
-            logging.warning("Error! I can not get path! 0x(((")
+            logging.warning("I'm sorry, but I couldn't find the path(")
 
     def write_in_file_csv(self, data) -> None:
         """
@@ -45,7 +46,6 @@ class Data:
             with open(f'{self.dir_name}/annotation.csv', 'a', newline='') as file:
                 wr = csv.writer(file)
                 wr.writerow(["absolute path", "relative path", "name"])
-
                 for i in range(999):
                     wr.writerow([
                         data["absolute path"][i],
@@ -53,9 +53,8 @@ class Data:
                         data["name"][i]
                     ])
                 file.close()
-                pass
         except OSError:
-            logging.warning("Error! Write in this file is failed! 0x(((")
+            logging.warning("error when writing the annotation file")
 
     def get_data_path(self, data, enum) -> list:
         """
@@ -77,7 +76,7 @@ class Data:
             data["name"] = self.dir_name
             return data
         except OSError:
-            logging.warning("Error! I can not get the path of data! 0x(((")
+            logging.warning("error when generating a data dictionary with paths")
 
     def create_data_for_csv_file(self, enum) -> None:
         """
@@ -101,7 +100,7 @@ class Data:
             print(df)
             self.write_in_file_csv(df)
         except OSError:
-            logging.warning("Error forming of csv file! 0x(((")
+            logging.warning("error when creating a data dictionary")
 
 
 if __name__ == "__main__":
