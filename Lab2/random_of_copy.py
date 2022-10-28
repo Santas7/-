@@ -19,7 +19,7 @@ def create_copy_dataset_with_random_number(obj: type(Data)) -> None:
         n = random.randint(0, 10000)
         os.rename(f'{later_dir}/{obj.class_name}/{i + 1:04d}.jpg',
                   f'{later_dir}/{obj.class_name}/{n:05d}.jpg')
-        shutil.copy(os.path.expanduser(f'{later_dir}/{obj.class_name}/{n:05d}.jpg'), obj.dir_name)
+        shutil.copy(os.path.join(f'{later_dir}/{obj.class_name}/{n:05d}.jpg'), obj.dir_name)
         os.rename(f'{later_dir}/{obj.class_name}/{n:05d}.jpg',
                   f'{later_dir}/{obj.class_name}/{i + 1:04d}.jpg')
         obj.list_numbers.append(n)
