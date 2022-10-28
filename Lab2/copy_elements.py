@@ -25,7 +25,7 @@ def teleportdir(obj: type(Data)) -> None:
     """
     later_dir = obj.dir_name
     make_dir(obj)
-    for i in range(999):
+    for i in range(1000):
         os.rename(f'{later_dir}/{obj.class_name}/{i + 1:04d}.jpg',
                   f'{later_dir}/{obj.class_name}/{obj.class_name}_{i + 1:04d}.jpg')
         shutil.copy(os.path.expanduser(f'{later_dir}/{obj.class_name}/{obj.class_name}_{(i + 1):04d}.jpg'),

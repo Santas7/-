@@ -67,7 +67,7 @@ class Data:
             данная функция нужна для формирования словаря data с путями
         """
         try:
-            for i in range(999):
+            for i in range(1000):
                 data["absolute path"].append(self.absolute_or_related(0, i + 1))
                 data["related path"].append(self.absolute_or_related(1, i + 1))
             data["name"] = self.class_name
@@ -80,7 +80,7 @@ class Data:
             данная функция нужна для формирования словаря data с путями
         """
         try:
-            for i in range(999):
+            for i in range(1000):
                 data["absolute path"].append(self.absolute_or_related(2, i + 1))
                 data["related path"].append(self.absolute_or_related(3, i + 1))
             data["name"] = self.dir_name

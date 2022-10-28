@@ -15,7 +15,7 @@ def create_copy_dataset_with_random_number(obj: type(Data)) -> None:
     later_dir = obj.dir_name
     ce.make_dir(obj)
 
-    for i in range(999):
+    for i in range(1000):
         n = random.randint(0, 10000)
         os.rename(f'{later_dir}/{obj.class_name}/{i + 1:04d}.jpg',
                   f'{later_dir}/{obj.class_name}/{n:05d}.jpg')
