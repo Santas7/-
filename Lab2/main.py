@@ -23,15 +23,15 @@ class Data:
         try:
             path = ""
             if enum == 0:
-                path = os.path.abspath(f'{self.dir_name}/{self.class_name}/{i:04d}.jpg')
+                path = os.path.join(os.getcwd(), f'{self.dir_name}/{self.class_name}/{i:04d}.jpg')
             elif enum == 1:
                 path = os.path.join(f'{self.dir_name}/{self.class_name}/{i:04d}.jpg')
             elif enum == 2:
-                path = os.path.abspath(f'{self.dir_name}/{self.class_name}_{i:04d}.jpg')
+                path = os.path.join(os.getcwd(), f'{self.dir_name}/{self.class_name}_{i:04d}.jpg')
             elif enum == 3:
                 path = os.path.join(f'{self.dir_name}/{self.class_name}_{i:04d}.jpg')
             elif enum == 4:
-                path = os.path.abspath(f'{self.dir_name}/{i:05d}.jpg')
+                path = os.path.join(os.getcwd(), f'{self.dir_name}/{i:05d}.jpg')
             elif enum == 5:
                 path = os.path.join(f'{self.dir_name}/{i:05d}.jpg')
             return path
