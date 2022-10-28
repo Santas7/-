@@ -2,9 +2,10 @@ import os
 import shutil
 import main
 from main import Data
+from typing import Type
 
 
-def make_dir(obj: object) -> None:
+def make_dir(obj: type(Data)) -> None:
     """
         проверка на сущ-ю директорию + создание новой директории
     """
@@ -17,7 +18,7 @@ def make_dir(obj: object) -> None:
         obj.set_dir_name("new_dataset")
 
 
-def teleportdir(obj: object) -> None:
+def teleportdir(obj: type(Data)) -> None:
     """
         данная функция создает новую папку new_dataset и переносит туда каталог class_name со всеми ее под-каталогами
         так что имена новых под-каталогов начинаются с class_name

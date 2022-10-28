@@ -8,7 +8,7 @@ import main
 from main import Data
 
 
-def create_copy_dataset_with_random_number(obj: object) -> None:
+def create_copy_dataset_with_random_number(obj: type(Data)) -> None:
     """
         данная функция копирует файлы класса и переименовывает их рандомно
     """
