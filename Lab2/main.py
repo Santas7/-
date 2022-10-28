@@ -57,41 +57,23 @@ class Data:
         except OSError:
             logging.warning("Error! Write in this file is failed! 0x(((")
 
-    def get_data_path(self, data) -> list:
+    def get_data_path(self, data, enum) -> list:
         """
             данная функция нужна для формирования словаря data с путями
         """
         try:
-            for i in range(1000):
-                data["absolute path"].append(self.absolute_or_related(0, i + 1))
-                data["related path"].append(self.absolute_or_related(1, i + 1))
-            data["name"] = self.class_name
-            return data
-        except OSError:
-            logging.warning("Error! I can not get the path of data! 0x(((")
-
-    def get_data_path_w(self, data) -> list:
-        """
-            данная функция нужна для формирования словаря data с путями
-        """
-        try:
-            for i in range(1000):
-                data["absolute path"].append(self.absolute_or_related(2, i + 1))
-                data["related path"].append(self.absolute_or_related(3, i + 1))
-            data["name"] = self.dir_name
-            return data
-        except OSError:
-            logging.warning("Error! I can not get the path of data! 0x(((")
-
-    def get_data_path_w2(self, data) -> list:
-        """
-            данная функция нужна для формирования списка data с путями
-        """
-        try:
-            # print(len(self.n_data))
-            for i in range(len(self.list_numbers)):
-                data["absolute path"].append(self.absolute_or_related(4, self.list_numbers[i]))
-                data["related path"].append(self.absolute_or_related(5, self.list_numbers[i]))
+            if enum == 0:
+                for i in range(1000):
+                    data["absolute path"].append(self.absolute_or_related(0, i + 1))
+                    data["related path"].append(self.absolute_or_related(1, i + 1))
+            elif enum == 1:
+                for i in range(1000):
+                    data["absolute path"].append(self.absolute_or_related(2, i + 1))
+                    data["related path"].append(self.absolute_or_related(3, i + 1))
+            elif enum == 2:
+                for i in range(len(self.list_numbers)):
+                    data["absolute path"].append(self.absolute_or_related(4, self.list_numbers[i]))
+                    data["related path"].append(self.absolute_or_related(5, self.list_numbers[i]))
             data["name"] = self.dir_name
             return data
         except OSError:
@@ -108,11 +90,11 @@ class Data:
                 "name": ""
             }
             if enum == 0:
-                data = self.get_data_path(data)
+                data = self.get_data_path(data, 0)
             elif enum == 1:
-                data = self.get_data_path_w(data)
+                data = self.get_data_path(data, 1)
             elif enum == 2:
-                data = self.get_data_path_w2(data)
+                data = self.get_data_path(data, 2)
             else:
                 print("error invalid id!")
             df = pd.DataFrame(data)
