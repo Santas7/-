@@ -3,7 +3,7 @@ from main import Data
 import next_element as ne
 
 
-class Iterator:
+class IteratorOfExemplar:
     """
         класс итератор - чтобы обойти элементы внутри объекта вашего собственного класса
     """
@@ -28,6 +28,6 @@ class Iterator:
 if __name__ == "__main__":
     num = int(input("Please input numbers iteration: "))
     path = input("Please input path: ")  # например dataset/rose/0015.jpg
-    it = Iterator(num, Data(main.CLASS_DEFAULT[0], "dataset"), path)
+    it = IteratorOfExemplar(num, Data(main.CLASS_DEFAULT[0], "dataset"), path)
     for val in it:
         print(val)
