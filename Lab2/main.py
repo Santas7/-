@@ -24,19 +24,19 @@ class Data:
             if event == 0:
                 path = os.path.abspath(f'{self.dir_name}/{self.class_name}/{i:04d}.jpg')
                 return path
-            if event == 1:
+            elif event == 1:
                 path = os.path.expanduser(f'{self.dir_name}/{self.class_name}/{i:04d}.jpg')
                 return path
-            if event == 2:
+            elif event == 2:
                 path = os.path.abspath(f'{self.dir_name}/{self.class_name}_{i:04d}.jpg')
                 return path
-            if event == 3:
+            elif event == 3:
                 path = os.path.expanduser(f'{self.dir_name}/{self.class_name}_{i:04d}.jpg')
                 return path
-            if event == 4:
+            elif event == 4:
                 path = os.path.abspath(f'{self.dir_name}/{i:05d}.jpg')
                 return path
-            if event == 5:
+            elif event == 5:
                 path = os.path.expanduser(f'{self.dir_name}/{i:05d}.jpg')
                 return path
         except OSError:
