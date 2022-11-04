@@ -7,7 +7,7 @@ from typing import Type
 
 def make_dir(obj: type(Data)) -> None:
     """
-        проверка на сущ-ю директорию + создание новой директории
+        проверка на сущ-ю директорию + создание новой директории "new_dataset"
     """
     try:
         os.mkdir("new_dataset")
@@ -18,25 +18,21 @@ def make_dir(obj: type(Data)) -> None:
         obj.dir_name = "new_dataset"
 
 
-def teleport_dir(obj: type(Data)) -> None:
+def teleport_dir(obj: type(Data), path: str, class_name: str) -> None:
     """
         данная функция создает новую папку new_dataset и переносит туда каталог class_name со всеми ее под-каталогами
-        так что имена новых под-каталогов начинаются с class_name
+        так что имена новых под-каталогов начинаются с class_name. В конце цикла добавляем в файл аннотация.
         :later_dir: - предыдущая директория ( нужно сохранить )
     """
     later_dir = obj.dir_name
     make_dir(obj)
     for i in range(1000):
-        os.rename(f'{later_dir}/{obj.class_name}/{i + 1:04d}.jpg',
-                  f'{later_dir}/{obj.class_name}/{obj.class_name}_{i + 1:04d}.jpg')
-        shutil.copy(os.path.join(f'{later_dir}/{obj.class_name}/{obj.class_name}_{(i + 1):04d}.jpg'),
-                    obj.dir_name)
-        os.rename(f'{later_dir}/{obj.class_name}/{obj.class_name}_{i + 1:04d}.jpg',
-                  f'{later_dir}/{obj.class_name}/{i + 1:04d}.jpg')
-    obj.create_data_for_csv_file(1)  # type 1
-
+        os.rename(os.path.join(later_dir, class_name, f'{(i+1):04d}.jpg'),
+                  os.path.join(later_dir, class_name, f'{class_name}_{(i+1):04d}.jpg'))
+        shutil.copy(os.path.join(later_dir, class_name, f'{class_name}_{(i+1):04d}.jpg'), obj.dir_name)
+        os.rename(os.path.join(later_dir, class_name, f"{class_name}_{(i+1):04d}.jpg"),
+                  os.path.join(later_dir, class_name, f'{(i+1):04d}.jpg'))
+        obj.add(os.path.join(path, obj.dir_name, class_name), class_name, f'{class_name}_{(i+1):04d}.jpg')  # добавление строки в файл аннотация
 
 if __name__ == "__main__":
-    for element in range(len(main.CLASS_DEFAULT)):
-        obj = Data(main.CLASS_DEFAULT[element], "dataset")
-        teleport_dir(obj)
+    teleport_dir(Data("dataset"), "D:\Program Files\programmingLabs\Python\python-L-2-var-4\Lab2", main.CLASS_DEFAULT[0])
