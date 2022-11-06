@@ -3,8 +3,8 @@ import random
 import os
 import shutil
 import copy_elements as ce
-import main
-from main import Data
+import annotation
+from annotation import Data
 
 
 def create_copy_dataset_with_random_number(obj: type(Data), path: str, class_name: str) -> None:

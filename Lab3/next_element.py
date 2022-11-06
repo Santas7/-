@@ -1,5 +1,5 @@
 import csv
-from main import Data
+from annotation import Data
 
 
 def next_element(obj: type(Data), pointer: str) -> str:

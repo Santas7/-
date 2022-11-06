@@ -1,5 +1,5 @@
-import main
-from main import Data
+import annotation
+from annotation import Data
 import next_element as ne
 import os
 
