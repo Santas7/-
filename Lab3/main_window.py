@@ -7,6 +7,14 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QFil
 class MainWindow(QMainWindow):
     def __init__(self) -> None:
         super().__init__()
+        # параметры окна
+        self.setWindowTitle("MyApp")
+        self.setFixedSize(QSize(800, 600))
+        self.dataset_path = QFileDialog.getExistingDirectory(self, 'Путь к папке базового датасет')
+        src = QLabel(f'Базовый датасет:\n{self.dataset_path}', self)
+        layout = QGridLayout()
+        layout.addWidget(src, 0, 0)
+
         self.show()
 
     def add_button(self, name: str, size_x: int, size_y: int, pos_x: int, pos_y: int):
