@@ -26,10 +26,9 @@ def back_element(obj: type(Data), pointer: str) -> str:
                 exist = pointer in row[1]
                 if exist:
                     res = row[1].split(",")[1].replace("\\", "/")
-                    return res.replace(str(num_list[0]), str(num_list[0] - 1))
+                    return res.replace(str(num_list[0]), str(num_list[0]-1))
             i += 1
     return None
-
 
 def next_element(obj: type(Data), pointer: str) -> str:
     """
@@ -43,7 +42,7 @@ def next_element(obj: type(Data), pointer: str) -> str:
             if i != 0:
                 exist = pointer in row[1]
                 if status:
-                    return "next--> " + str(row[1].split(",")[1])
+                    return row[1].split(",")[1].replace("\\", "/")
                 if exist:
                     status = True
             i += 1
@@ -51,5 +50,6 @@ def next_element(obj: type(Data), pointer: str) -> str:
 
 if __name__ == "__main__":
     obj = Data("dataset")
-    next = next_element(obj, "dataset\\rose\\0751.jpg")  # dataset\rose\0752.jpg
-    print(next)
+    next = next_element(obj, "dataset\\rose\\0304.jpg")
+    back = back_element(obj, "dataset\\rose\\0304.jpg") # dataset\rose\0752.jpg
+    print(next, back)
