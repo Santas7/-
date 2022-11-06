@@ -3,6 +3,7 @@ from annotation import Data
 import next_element as ne
 import os
 
+
 class IteratorOfExemplar:
     """
         класс итератор - чтобы обойти элементы внутри объекта вашего собственного класса
@@ -20,6 +21,14 @@ class IteratorOfExemplar:
         self.pointer = ne.next_element(self.obj, self.pointer)
         return self.pointer
 
+    def __back__(self) -> str:
+        """
+            возвращает предыдущий элемент
+        """
+        self.pointer = ne.back_element(self.obj, self.pointer)
+        return self.pointer
+
+
 if __name__ == "__main__":
-    iter = IteratorOfExemplar(Data("dataset"),  "dataset\\rose\\0002.jpg")
+    iter = IteratorOfExemplar(Data("dataset"), "dataset\\rose\\0002.jpg")
     print(iter.__next__())
