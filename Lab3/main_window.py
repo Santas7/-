@@ -44,6 +44,21 @@ class MainWindow(QMainWindow):
         self.pic.resize(600, 500)  # <--
         self.pic.move(10, 50)
 
+    # события клика по кнопке
+        # переходы "слудующий элемент" и "предыдущий элемент"
+        self.btn_next_rose.clicked.connect(self.next_rose)
+        self.btn_back_rose.clicked.connect(self.back_rose)
+        self.btn_next_tulip.clicked.connect(self.next_tulip)
+        self.btn_back_tulip.clicked.connect(self.back_tulip)
+
+        # создание аннотации, копия + рандом
+        self.btn_create_of_annotation.clicked.connect(self.create_annotation)
+        self.btn_copy_of_dataset.clicked.connect(self.copy_of_dataset)
+        self.btn_random_of_dataset.clicked.connect(self.random_of_dataset)
+
+        # выход из программы
+        self.go_to_exit.clicked.connect(self.exit)
+
         self.show()
 
     def add_button(self, name: str, size_x: int, size_y: int, pos_x: int, pos_y: int):
