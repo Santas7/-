@@ -96,11 +96,33 @@ class MainWindow(QMainWindow):
         """
             метод перехода к предыдущей картинки ( rose )
         """
+        try:
+            if self.count_r >= 1000 or self.count_r <= 1:
+                self.s_p_rose = f"dataset\\{annotation.CLASS_DEFAULT[0]}\\0001.jpg"
+            else:
+                next = IteratorOfExemplar(Data("dataset"), self.s_p_rose).__back__()
+                next.replace("", '"')
+                self.s_p_rose = next.replace("/", "\\")
+                self.count_r -= 1
+            self.pic.setPixmap(QtGui.QPixmap(self.s_p_rose.replace('"', "")))
+        except OSError:
+            print("error")
 
     def back_tulip(self):
         """
             метод перехода к предыдущей картинки ( tulip )
         """
+        try:
+            if self.count_t >= 1000 or self.count_t <= 1:
+                self.s_p_tulip = f"dataset\\{annotation.CLASS_DEFAULT[1]}\\0001.jpg"
+            else:
+                next = IteratorOfExemplar(Data("dataset"), self.s_p_tulip).__back__()
+                next.replace("", '"')
+                self.s_p_tulip = next.replace("/", "\\")
+                self.count_t -= 1
+            self.pic.setPixmap(QtGui.QPixmap(self.s_p_tulip.replace('"', "")))
+        except OSError:
+            print("error")
 
     def create_annotation(self):
         """
