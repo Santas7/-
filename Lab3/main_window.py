@@ -38,6 +38,12 @@ class MainWindow(QMainWindow):
         self.btn_back_tulip = self.add_button("<--Предыдущий тюльпан", 150, 50, 630, 400)
         self.go_to_exit = self.add_button("Выйти из программы", 150, 50, 630, 500)
 
+        # картинка
+        self.pic = QtWidgets.QLabel(self)
+        self.pic.setPixmap(QtGui.QPixmap(self.s_p_rose))
+        self.pic.resize(600, 500)  # <--
+        self.pic.move(10, 50)
+
         self.show()
 
     def add_button(self, name: str, size_x: int, size_y: int, pos_x: int, pos_y: int):
@@ -58,11 +64,33 @@ class MainWindow(QMainWindow):
         """
             метод перехода к некст картинки ( rose )
         """
+        try:
+            if self.count_r >= 1000 or self.count_r < 1:
+                self.s_p_rose = f"dataset\\{annotation.CLASS_DEFAULT[0]}\\0001.jpg"
+            else:
+                next = IteratorOfExemplar(Data("dataset"), self.s_p_rose).__next__()
+                next.replace("", '"')
+                self.s_p_rose = next.replace("/", "\\")
+                self.count_r += 1
+            self.pic.setPixmap(QtGui.QPixmap(self.s_p_rose.replace('"', "")))
+        except OSError:
+            print("error")
 
     def next_tulip(self):
         """
             метод перехода к некст картинки ( tulip )
         """
+        try:
+            if self.count_t >= 1000 or self.count_t < 1:
+                self.s_p_tulip = f"dataset\\{annotation.CLASS_DEFAULT[1]}\\0001.jpg"
+            else:
+                next = IteratorOfExemplar(Data("dataset"), self.s_p_tulip).__next__()
+                next.replace("", '"')
+                self.s_p_tulip = next.replace("/", "\\")
+                self.count_t += 1
+            self.pic.setPixmap(QtGui.QPixmap(self.s_p_tulip.replace('"', "")))
+        except OSError:
+            print("error")
 
     def back_rose(self):
         """
