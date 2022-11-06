@@ -4,7 +4,7 @@ from annotation import Data
 
 def back_element(obj: type(Data), pointer: str) -> str:
     """
-        данная функция получает объект и пойнт(точку или метку) и возращает следующий элемент
+        данная функция получает объект и пойнт(точку или метку) и возращает предыдущий элемент
     """
     with open('annotation.csv', 'r', newline='') as file:
         wr = csv.reader(file, delimiter=' ', quotechar='|')
