@@ -77,17 +77,26 @@ class MainWindow(QMainWindow):
         """
             метод создания копии dataset
         """
+        try:
+            ce.teleport_dir(Data("dataset"), self.dataset_path, annotation.CLASS_DEFAULT[0])
+        except OSError:
+            print("error")
 
     def random_of_dataset(self):
         """
             метод создания рандомизации датасет
         """
+        try:
+            rc.create_copy_dataset_with_random_number(Data("dataset"), self.dataset_path, annotation.CLASS_DEFAULT[0])
+        except OSError:
+            print("error")
 
     def exit(self):
         """
             метод выхода из программы
         """
-
+        print("пока... надеюсь скоро увидимся!)")
+        self.quit()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
