@@ -28,6 +28,16 @@ class MainWindow(QMainWindow):
         self.s_p_rose = f"dataset\\{annotation.CLASS_DEFAULT[0]}\\0001.jpg"  # начальный для rose
         self.s_p_tulip = f"dataset\\{annotation.CLASS_DEFAULT[1]}\\0001.jpg"  # начальный для tulip
 
+        # кнопки
+        self.btn_create_of_annotation = self.add_button("Создать аннотацию", 150, 50, 630, 50)
+        self.btn_copy_of_dataset = self.add_button("Копирование датасет", 150, 50, 630, 100)
+        self.btn_random_of_dataset = self.add_button("Рандомайз датасет", 150, 50, 630, 150)
+        self.btn_next_rose = self.add_button("Следующая роза-->", 150, 50, 630, 250)
+        self.btn_back_rose = self.add_button("<--Предыдущая роза", 150, 50, 630, 300)
+        self.btn_next_tulip = self.add_button("Следующий тюльпан-->", 150, 50, 630, 350)
+        self.btn_back_tulip = self.add_button("<--Предыдущий тюльпан", 150, 50, 630, 400)
+        self.go_to_exit = self.add_button("Выйти из программы", 150, 50, 630, 500)
+
         self.show()
 
     def add_button(self, name: str, size_x: int, size_y: int, pos_x: int, pos_y: int):
@@ -39,6 +49,10 @@ class MainWindow(QMainWindow):
             :pos_x: - позиция по x
             :pos_y: - позиция по y
         """
+        button = QPushButton(name, self)
+        button.setFixedSize(QSize(size_x, size_y))
+        button.move(pos_x, pos_y)
+        return button
 
     def next_rose(self):
         """
