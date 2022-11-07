@@ -3,30 +3,36 @@ import copy_elements as ce
 import random_of_copy as rc
 from annotation import Data
 from iterator_class import IteratorOfExemplar
+import os
 import sys
-from PyQt6.QtCore import QSize, Qt
-from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QFileDialog, QVBoxLayout, QHBoxLayout, \
-    QGridLayout
-from PyQt6.QtGui import QPixmap
+from enum import Enum
+from PyQt6.QtCore import QSize
+from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QFileDialog, QGridLayout
 from PyQt6 import QtGui, QtWidgets
+
+
+class Type(Enum):
+    ROSE = 0
+    TULIP = 1
 
 
 class MainWindow(QMainWindow):
     def __init__(self) -> None:
         super().__init__()
         # параметры окна
-        self.setWindowTitle("MyApp")
-        self.setFixedSize(QSize(800, 600))
+        self.setWindowTitle("Main window")
+        # self.setFixedSize(QSize(800, 600))
         self.dataset_path = QFileDialog.getExistingDirectory(self, 'Путь к папке базового датасет')
         src = QLabel(f'Базовый датасет:\n{self.dataset_path}', self)
-        layout = QGridLayout()
-        layout.addWidget(src, 0, 0)
+        src.setFixedSize(QSize(800, 50))
+        #layout = QGridLayout()
+        #layout.addWidget(src, 0, 0)
 
         # стартовые значения
         self.count_r = 1  # счетчик позиции
         self.count_t = 1
-        self.s_p_rose = f"dataset\\{annotation.CLASS_DEFAULT[0]}\\0001.jpg"  # начальный для rose
-        self.s_p_tulip = f"dataset\\{annotation.CLASS_DEFAULT[1]}\\0001.jpg"  # начальный для tulip
+        self.s_p_rose = os.path.join("dataset", annotation.CLASS_DEFAULT[Type.ROSE.value], "0001.jpg")  # начальный для rose
+        self.s_p_tulip = os.path.join("dataset", annotation.CLASS_DEFAULT[Type.TULIP.value], "0001.jpg")  # начальный для tulip
 
         # кнопки
         self.btn_create_of_annotation = self.add_button("Создать аннотацию", 150, 50, 630, 50)
@@ -44,12 +50,15 @@ class MainWindow(QMainWindow):
         self.pic.resize(600, 500)  # <--
         self.pic.move(10, 50)
 
+        if not os.path.exists(self.s_p_rose) or os.path.exists(self.s_p_tulip):
+            self.pic.setText('Ошибка!\n' + 'В базовом датасете нету начальных картинок: "rose" или "tulip"')
+
     # события клика по кнопке
         # переходы "слудующий элемент" и "предыдущий элемент"
-        self.btn_next_rose.clicked.connect(self.next_rose)
-        self.btn_back_rose.clicked.connect(self.back_rose)
-        self.btn_next_tulip.clicked.connect(self.next_tulip)
-        self.btn_back_tulip.clicked.connect(self.back_tulip)
+        self.btn_next_rose.clicked.connect(lambda image_path=self.s_p_rose, index=Type.ROSE.value, count=self.count_r: self.next(self.s_p_rose, Type.ROSE.value, self.count_r)) # self.next(self.s_p_rose, Type.ROSE.value)
+        self.btn_back_rose.clicked.connect(lambda image_path=self.s_p_rose, index=Type.ROSE.value, count=self.count_r: self.back(self.s_p_rose, Type.ROSE.value, self.count_r))
+        self.btn_next_tulip.clicked.connect(lambda image_path=self.s_p_tulip, index=Type.TULIP.value, count=self.count_t: self.next(self.s_p_tulip, Type.TULIP.value, self.count_t))
+        self.btn_back_tulip.clicked.connect(lambda image_path=self.s_p_tulip, index=Type.TULIP.value, count=self.count_t: self.back(self.s_p_tulip, Type.TULIP.value, self.count_t))
 
         # создание аннотации, копия + рандом
         self.btn_create_of_annotation.clicked.connect(self.create_annotation)
@@ -75,67 +84,51 @@ class MainWindow(QMainWindow):
         button.move(pos_x, pos_y)
         return button
 
-    def next_rose(self):
+    def next(self, image_path: str, index: int, count: int):
         """
-            метод перехода к некст картинки ( rose )
+            метод перехода к некст картинки
         """
         try:
-            if self.count_r >= 1000 or self.count_r < 1:
-                self.s_p_rose = f"dataset\\{annotation.CLASS_DEFAULT[0]}\\0001.jpg"
+            if count >= 1000 or count < 1:
+                image_path = os.path.join("dataset", annotation.CLASS_DEFAULT[index], "0001.jpg")
             else:
-                next = IteratorOfExemplar(Data("dataset"), self.s_p_rose).__next__()
+                next = IteratorOfExemplar(Data("dataset"), image_path).__next__()
                 next.replace("", '"')
-                self.s_p_rose = next.replace("/", "\\")
-                self.count_r += 1
-            self.pic.setPixmap(QtGui.QPixmap(self.s_p_rose.replace('"', "")))
+                image_path = next.replace("/", "\\")
+                count += 1
+            self.pic.setPixmap(QtGui.QPixmap(image_path.replace('"', "")))
+            if index == 0 and count != 0:
+                self.s_p_rose = image_path
+                self.count_r = count
+            elif index == 1 and count != 0:
+                self.s_p_tulip = image_path
+                self.count_t = count
+            else:
+                self.pic.setText('Ошибка!\n' + 'В базовом датасете нету начальных картинок: "rose" или "tulip"')
         except OSError:
             print("error")
 
-    def next_tulip(self):
+    def back(self, image_path: str, index: int, count: int):
         """
-            метод перехода к некст картинки ( tulip )
-        """
-        try:
-            if self.count_t >= 1000 or self.count_t < 1:
-                self.s_p_tulip = f"dataset\\{annotation.CLASS_DEFAULT[1]}\\0001.jpg"
-            else:
-                next = IteratorOfExemplar(Data("dataset"), self.s_p_tulip).__next__()
-                next.replace("", '"')
-                self.s_p_tulip = next.replace("/", "\\")
-                self.count_t += 1
-            self.pic.setPixmap(QtGui.QPixmap(self.s_p_tulip.replace('"', "")))
-        except OSError:
-            print("error")
-
-    def back_rose(self):
-        """
-            метод перехода к предыдущей картинки ( rose )
+            метод перехода к предыдущей картинки
         """
         try:
-            if self.count_r >= 1000 or self.count_r <= 1:
-                self.s_p_rose = f"dataset\\{annotation.CLASS_DEFAULT[0]}\\0001.jpg"
+            if count >= 1000 or count < 1:
+                image_path = os.path.join("dataset", annotation.CLASS_DEFAULT[index], "0001.jpg")
             else:
-                next = IteratorOfExemplar(Data("dataset"), self.s_p_rose).__back__()
+                next = IteratorOfExemplar(Data("dataset"), image_path).__back__()
                 next.replace("", '"')
-                self.s_p_rose = next.replace("/", "\\")
-                self.count_r -= 1
-            self.pic.setPixmap(QtGui.QPixmap(self.s_p_rose.replace('"', "")))
-        except OSError:
-            print("error")
-
-    def back_tulip(self):
-        """
-            метод перехода к предыдущей картинки ( tulip )
-        """
-        try:
-            if self.count_t >= 1000 or self.count_t <= 1:
-                self.s_p_tulip = f"dataset\\{annotation.CLASS_DEFAULT[1]}\\0001.jpg"
+                image_path = next.replace("/", "\\")
+                count -= 1
+            self.pic.setPixmap(QtGui.QPixmap(image_path.replace('"', "")))
+            if index == 0 and count != 0:
+                self.s_p_rose = image_path
+                self.count_r = count
+            elif index == 1 and count != 0:
+                self.s_p_tulip = image_path
+                self.count_t = count
             else:
-                next = IteratorOfExemplar(Data("dataset"), self.s_p_tulip).__back__()
-                next.replace("", '"')
-                self.s_p_tulip = next.replace("/", "\\")
-                self.count_t -= 1
-            self.pic.setPixmap(QtGui.QPixmap(self.s_p_tulip.replace('"', "")))
+                self.pic.setText('Ошибка!\n' + 'В базовом датасете нету начальных картинок: "rose" или "tulip"')
         except OSError:
             print("error")
 
