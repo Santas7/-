@@ -67,3 +67,45 @@ def filter_label_class(df: pd.DataFrame, label_class: str) -> pd.DataFrame:
         :label_class: метка класса
     """
     return df[df.name_class == label_class]
+
+
+def multifunctional_filter(df: pd.DataFrame, width_max: int, height_max: int, label_class: str) -> pd.DataFrame:
+    """
+        данная функция вернет отфильтрованный по переданной максимальной высоте и ширине + метке класса dataframe.
+        ( 7 пункт л/р )
+        :df: переданный dataframe
+        :width_max: максимально возможная ширина
+        :height_max: максимально возможная высота
+        :label_class: метка класса
+    """
+
+
+def grouping(df: pd.DataFrame) -> tuple:
+    """
+        данная функция делает группировку dataframe, вычисляя min и max + cред.знач по пикселям.
+        ( 8 пункт л/р )
+        Операция groupby включает в себя некоторую комбинацию разбиения объекта, применения функции и объединения
+        результатов. Это можно использовать для группировки больших объемов данных и вычисления операций
+        над этими группами.
+        min() - получение минимального
+        max() - получение максимального
+        mean() - сред.знач
+        :df: переданный dataframe.
+    """
+
+
+def histogram_build(df: pd.DataFrame, label_class: str) -> list:
+    """
+    данная функция выполняет построение гистограммы. На вход функция принимает dataframe и метку класса,
+    на выходе - три массива.
+    ( 9 пункт л/р )
+    :df: переданный dataframe.
+    :label_class: метка класса
+    """
+
+
+def timeline(df: pd.DataFrame):
+    """
+        данная функция строит график по данным гистограммы
+        ( 10 пункт л/р )
+    """
