@@ -128,6 +128,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-/lab1/.venv/
-/lab1/.idea/
-/lab1/dataset/ 
+/lab4/.venv/
+/lab4/.idea/
