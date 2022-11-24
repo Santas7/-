@@ -129,4 +129,3 @@ def timeline(df: pd.DataFrame):
 
 if __name__ == "__main__":
     df = forming_data_frame()
-    # timeline(df)
