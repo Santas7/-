@@ -78,6 +78,7 @@ def multifunctional_filter(df: pd.DataFrame, width_max: int, height_max: int, la
         :height_max: максимально возможная высота
         :label_class: метка класса
     """
+    return df[((df.name_class == label_class) & (df.width <= width_max) & (df.height <= height_max))]
 
 
 def grouping(df: pd.DataFrame) -> tuple:
@@ -92,6 +93,8 @@ def grouping(df: pd.DataFrame) -> tuple:
         mean() - сред.знач
         :df: переданный dataframe.
     """
+    df['pixels'] = df['height'] * df['width'] * df['channel']
+    return df.groupby('name_class').min(), df.groupby('name_class').max(), df.groupby('name_class').mean()
 
 
 def histogram_build(df: pd.DataFrame, label_class: str) -> list:
@@ -99,9 +102,15 @@ def histogram_build(df: pd.DataFrame, label_class: str) -> list:
     данная функция выполняет построение гистограммы. На вход функция принимает dataframe и метку класса,
     на выходе - три массива.
     ( 9 пункт л/р )
+    Гистограммы - это собранные подсчеты данных, организованные в набор предопределенных бинов.
     :df: переданный dataframe.
     :label_class: метка класса
     """
+    img = cv2.imread(np.random.choice(filter_label_class(df, label_class).related_path.to_numpy()))
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    return [cv2.calcHist([cv2.cvtColor(img, cv2.COLOR_BGR2RGB)], [0], None, [256], [0, 256]),
+            cv2.calcHist([cv2.cvtColor(img, cv2.COLOR_BGR2RGB)], [1], None, [256], [0, 256]),
+            cv2.calcHist([cv2.cvtColor(img, cv2.COLOR_BGR2RGB)], [2], None, [256], [0, 256])]
 
 
 def timeline(df: pd.DataFrame):
@@ -109,3 +118,11 @@ def timeline(df: pd.DataFrame):
         данная функция строит график по данным гистограммы
         ( 10 пункт л/р )
     """
+    colors = ['r', 'g', 'b']
+    for i in range(len(colors)):
+        plt.plot(histogram_build(df, "rose")[i], color=colors[i])
+    plt.ylabel('Intensity')
+    plt.title('Color scheme')
+    plt.xlabel('Color pixel')
+    plt.xlim([0, 256])
+    plt.show()
