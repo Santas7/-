@@ -126,3 +126,7 @@ def timeline(df: pd.DataFrame):
     plt.xlabel('Color pixel')
     plt.xlim([0, 256])
     plt.show()
+
+if __name__ == "__main__":
+    df = forming_data_frame()
+    # timeline(df)
