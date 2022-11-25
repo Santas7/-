@@ -98,16 +98,17 @@ class DataAnalysis:
         :label_class: метка класса
         """
         img = cv2.imread(np.random.choice(self.filter_label_class(label_class).related_path.to_numpy()))
-        return [cv2.calcHist([img], [0], None, [256], [0, 256]),
-                cv2.calcHist([img], [0], None, [256], [0, 256]),
-                cv2.calcHist([img], [0], None, [256], [0, 256])]
+        height, width, channel = img.shape
+        return [cv2.calcHist([img], [0], None, [256], [0, 256]) / (height * width),
+                cv2.calcHist([img], [1], None, [256], [0, 256]) / (height * width),
+                cv2.calcHist([img], [2], None, [256], [0, 256]) / (height * width)]
 
     def plots_the_histogram_data(self):
         """
             данная функция строит график по данным гистограммы
             ( 10 пункт л/р )
         """
-        colors = ['r', 'g', 'b']
+        colors = ['b', 'g', 'r']
         for i in range(len(colors)):
             plt.plot(self.histogram_build("rose")[i], color=colors[i])
         plt.ylabel('# of Pixels')
@@ -121,3 +122,4 @@ class DataAnalysis:
 
 if __name__ == "__main__":
     da = DataAnalysis()
+    da.plots_the_histogram_data()
