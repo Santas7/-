@@ -111,9 +111,9 @@ class DataAnalysis:
         colors = ['b', 'g', 'r']
         for i in range(len(colors)):
             plt.plot(self.histogram_build("rose")[i], color=colors[i])
-        plt.ylabel('# of Pixels')
+        plt.ylabel('density')
         plt.title('Image Histogram GFG')
-        plt.xlabel('Pixel values')
+        plt.xlabel('intensity')
         plt.xlim([0, 256])
         plt.show()
 
