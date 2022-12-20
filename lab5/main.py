@@ -114,5 +114,25 @@ def сreating_and_training_neural_network():
     plt.show()
     # print(train_list[0].split('/')[-1].split('.')[0])
 
+    # training, test and validation samples, respectively
+    train_transforms = transforms.Compose([
+        transforms.Resize((224, 224)),
+        transforms.RandomResizedCrop(224),
+        transforms.RandomHorizontalFlip(),
+        transforms.ToTensor()
+    ])
+    val_transforms = transforms.Compose([
+        transforms.Resize((224, 224)),
+        transforms.RandomResizedCrop(224),
+        transforms.RandomHorizontalFlip(),
+        transforms.ToTensor()
+    ])
+    test_transforms = transforms.Compose([
+        transforms.Resize((224, 224)),
+        transforms.RandomResizedCrop(224),
+        transforms.RandomHorizontalFlip(),
+        transforms.ToTensor()
+    ])
+
 if __name__ == '__main__':
     сreating_and_training_neural_network()
