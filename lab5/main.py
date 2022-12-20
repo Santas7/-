@@ -150,6 +150,10 @@ def сreating_and_training_neural_network():
     optimizer = optim.Adam(params=model.parameters(), lr=0.001)
     criterion = nn.CrossEntropyLoss()
 
+    # train our network
+    epochs = 10
+
+
 
 if __name__ == '__main__':
     сreating_and_training_neural_network()
