@@ -191,6 +191,20 @@ def сreating_and_training_neural_network():
             valid_loss.append(float(epoch_val_loss))
             print('Epoch : {}, val_accuracy : {}, val_loss : {}'.format(epoch + 1, epoch_val_accuracy, epoch_val_loss))
 
+        # creation of graphs and their analysis
+        # first graphs
+        plt.figure(figsize=(15, 5))
+        plt.plot(range(len(train_accuracy)), train_accuracy, color="green")
+        plt.plot(range(len(valid_accuracy)), valid_accuracy, color="red")
+        plt.legend(["Train accuracy", "Valid accuracy"])
+        plt.show()
+
+        # second graphs
+        plt.figure(figsize=(15, 5))
+        plt.plot(range(len(train_loss)), [float(value) for value in train_loss], color="green")
+        plt.plot(range(len(valid_loss)), [float(value) for value in valid_loss], color="red")
+        plt.legend(["Train loss", "Valid loss"])
+        plt.show()
 
 if __name__ == '__main__':
     сreating_and_training_neural_network()
