@@ -101,5 +101,18 @@ def сreating_and_training_neural_network():
     test_list, val_list, test, val = train_test_split(train_test_val, test_val, test_size=0.5)
     # print(len(train_list), len(test_list), len(val_list))
 
+    # check dataset and pictures
+    random_idx = np.random.randint(1, len(list_pictures), size=10)
+    fig = plt.figure()
+    i = 1
+    for idx in random_idx:
+        ax = fig.add_subplot(2, 5, i)
+        img = Image.open(list_pictures[idx])
+        plt.imshow(img)
+        i += 1
+    plt.axis('off')
+    plt.show()
+    # print(train_list[0].split('/')[-1].split('.')[0])
+
 if __name__ == '__main__':
     сreating_and_training_neural_network()
