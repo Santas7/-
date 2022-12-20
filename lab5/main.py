@@ -142,5 +142,14 @@ def сreating_and_training_neural_network():
     test_loader = torch.utils.data.DataLoader(dataset=test_data, batch_size=10, shuffle=True)
     val_loader = torch.utils.data.DataLoader(dataset=val_data, batch_size=10, shuffle=True)
 
+    # build model
+    model = Cnn().to(device)
+    model.train()
+
+    # set loss function and optimizer
+    optimizer = optim.Adam(params=model.parameters(), lr=0.001)
+    criterion = nn.CrossEntropyLoss()
+
+
 if __name__ == '__main__':
     сreating_and_training_neural_network()
