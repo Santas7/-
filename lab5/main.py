@@ -215,6 +215,12 @@ def сreating_and_training_neural_network():
     # Answer: the model behaves perfectly, shows good results
     # When asked what is the best model to use). The best one! ( train_accuracy )
     # saving model
+    prob = []
+    for i in range(len(train_accuracy)):
+        prob.append(train_accuracy[i])
+
+    submission = pd.DataFrame({'id': idx, 'label': prob})
+    submission.to_csv('result.csv', index=False)
 
 if __name__ == '__main__':
     сreating_and_training_neural_network()
