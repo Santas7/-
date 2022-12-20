@@ -22,7 +22,27 @@ class Dataset(torch.utils.data.Dataset):
     """
         this class is for loading our image sets
     """
+    def __init__(self, file_list, transform=None):
+        self.transform = transform
+        self.file_list = file_list
 
+    # dataset length
+    def __len__(self):
+        self.filelength = len(self.file_list)
+        return self.filelength
+
+    # load an one of images
+    def __getitem__(self, idx: int):
+        img = Image.open(self.file_list[idx])
+        img_transformed = self.transform(img.convert("RGB"))
+        label = self.file_list[idx].split('/')[-1].split('.')[0]
+        #print(self.file_list[idx], label)
+        if label == os.path.join("new_dataset", "rose"):
+            label = 1
+        elif label == os.path.join("new_dataset", "tulip"):
+            label = 0
+        #print(label)
+        return img_transformed, label
 
 
 def сreating_and_training_neural_network():
