@@ -134,5 +134,13 @@ def сreating_and_training_neural_network():
         transforms.ToTensor()
     ])
 
+    train_data = Dataset(train_list, transform=train_transforms)
+    test_data = Dataset(test_list, transform=test_transforms)
+    val_data = Dataset(val_list, transform=val_transforms)
+
+    train_loader = torch.utils.data.DataLoader(dataset=train_data, batch_size=10, shuffle=True)
+    test_loader = torch.utils.data.DataLoader(dataset=test_data, batch_size=10, shuffle=True)
+    val_loader = torch.utils.data.DataLoader(dataset=val_data, batch_size=10, shuffle=True)
+
 if __name__ == '__main__':
     сreating_and_training_neural_network()
