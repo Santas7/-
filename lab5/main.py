@@ -88,5 +88,12 @@ def сreating_and_training_neural_network():
     if device == 'cuda':
         torch.cuda.manual_seed_all(1234)
 
+    # create class_labels and work with file annotation
+    class_labels = []
+    for i in range(948):
+        class_labels.append(True)
+    for i in range(954):
+        class_labels.append(False)
+
 if __name__ == '__main__':
     сreating_and_training_neural_network()
