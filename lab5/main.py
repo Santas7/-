@@ -82,7 +82,11 @@ class Dataset(torch.utils.data.Dataset):
 
 
 def сreating_and_training_neural_network():
-
+    # set seed and random value
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    torch.manual_seed(1234)
+    if device == 'cuda':
+        torch.cuda.manual_seed_all(1234)
 
 if __name__ == '__main__':
     сreating_and_training_neural_network()
