@@ -95,5 +95,11 @@ def сreating_and_training_neural_network():
     for i in range(954):
         class_labels.append(False)
 
+    # list of all pictures
+    list_pictures = glob.glob(os.path.join('new_dataset', '*.jpg'))
+    train_list, train_test_val, train_val, test_val = train_test_split(list_pictures, class_labels, test_size=0.2, shuffle=True)
+    test_list, val_list, test, val = train_test_split(train_test_val, test_val, test_size=0.5)
+    # print(len(train_list), len(test_list), len(val_list))
+
 if __name__ == '__main__':
     сreating_and_training_neural_network()
