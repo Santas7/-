@@ -206,5 +206,15 @@ def сreating_and_training_neural_network():
         plt.legend(["Train loss", "Valid loss"])
         plt.show()
 
+    # item 7-8
+    # a little analysis of the graphs
+    # 1. index increase in both the train_accuracy and valid_accuracy
+    # 2. this graph shows a strong decline in train_loss and not so strong in valid_loss
+
+    # Assignment: to evaluate the model's performance on the test sample.
+    # Answer: the model behaves perfectly, shows good results
+    # When asked what is the best model to use). The best one! ( train_accuracy )
+    # saving model
+
 if __name__ == '__main__':
     сreating_and_training_neural_network()
