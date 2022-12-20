@@ -153,6 +153,43 @@ def сreating_and_training_neural_network():
     # train our network
     epochs = 10
 
+    # in order to make it easier and more convenient to build graphs, let's create these lists
+    train_accuracy = []
+    train_loss = []
+    valid_accuracy = []
+    valid_loss = []
+
+    for epoch in range(epochs):
+        epoch_loss = 0
+        epoch_accuracy = 0
+        for data, label in train_loader:
+            data = data.to(device)
+            label = label.to(device)
+            output = model(data)
+            loss = criterion(output, label)
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            acc = ((output.argmax(dim=1) == label).float().mean())
+            epoch_accuracy += acc / len(train_loader)
+            epoch_loss += loss / len(train_loader)
+        train_accuracy.append(float(epoch_accuracy))
+        train_loss.append(float(epoch_loss))
+        print('Epoch : {}, train accuracy : {}, train loss : {}'.format(epoch + 1, epoch_accuracy, epoch_loss))
+        with torch.no_grad():
+            epoch_val_accuracy = 0
+            epoch_val_loss = 0
+            for data, label in val_loader:
+                data = data.to(device)
+                label = label.to(device)
+                val_output = model(data)
+                val_loss = criterion(val_output, label)
+                acc = ((val_output.argmax(dim=1) == label).float().mean())
+                epoch_val_accuracy += acc / len(val_loader)
+                epoch_val_loss += val_loss / len(val_loader)
+            valid_accuracy.append(float(epoch_val_accuracy))
+            valid_loss.append(float(epoch_val_loss))
+            print('Epoch : {}, val_accuracy : {}, val_loss : {}'.format(epoch + 1, epoch_val_accuracy, epoch_val_loss))
 
 
 if __name__ == '__main__':
