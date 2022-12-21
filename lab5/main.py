@@ -206,14 +206,14 @@ def сreating_and_training_neural_network():
         plt.show()
 
     # item 7-8
-    # a little analysis of the graphs
-    # 1. index increase in both the train_accuracy and valid_accuracy
-    # 2. this graph shows a strong decline in train_loss and not so strong in valid_loss
+    # a little analysis of the charts
+    # 1. increase in the index in both train_accuracy and valid_accuracy
+    # 2. this graph shows a strong decrease in train_loss and a not so strong decrease in valid_loss
 
-    # Assignment: to evaluate the model's performance on the test sample.
-    # Answer: the model behaves perfectly, shows good results
-    # When asked what is the best model to use). The best one! ( train_accuracy )
-    # saving model
+    # Assignment: evaluate the model's performance on the test sample.
+    # Answer: the model does not behave very well at the 6th iteration the loss function starts to grow, which is bad enough, the results are not very positive in this regard.
+    # On the question of which model is best to use). I wouldn't recommend using it at all), but it seems that train_accuracy is more stable.
+    # saving the model
     idx = []
     prob = []
     for i in range(len(train_accuracy)):
