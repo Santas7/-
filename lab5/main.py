@@ -126,28 +126,16 @@ def сreating_and_training_neural_network():
     # print(train_list[0].split('/')[-1].split('.')[0])
 
     # training, test and validation samples, respectively
-    train_transforms = transforms.Compose([
-        transforms.Resize((224, 224)),
-        transforms.RandomResizedCrop(224),
-        transforms.RandomHorizontalFlip(),
-        transforms.ToTensor()
-    ])
-    val_transforms = transforms.Compose([
-        transforms.Resize((224, 224)),
-        transforms.RandomResizedCrop(224),
-        transforms.RandomHorizontalFlip(),
-        transforms.ToTensor()
-    ])
-    test_transforms = transforms.Compose([
+    fixed_transforms = transforms.Compose([
         transforms.Resize((224, 224)),
         transforms.RandomResizedCrop(224),
         transforms.RandomHorizontalFlip(),
         transforms.ToTensor()
     ])
 
-    train_data = Dataset(train_list, transform=train_transforms)
-    test_data = Dataset(test_list, transform=test_transforms)
-    val_data = Dataset(val_list, transform=val_transforms)
+    train_data = Dataset(train_list, transform=fixed_transforms)
+    test_data = Dataset(test_list, transform=fixed_transforms)
+    val_data = Dataset(val_list, transform=fixed_transforms)
 
     train_loader = torch.utils.data.DataLoader(dataset=train_data, batch_size=10, shuffle=True)
     test_loader = torch.utils.data.DataLoader(dataset=test_data, batch_size=10, shuffle=True)
