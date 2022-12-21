@@ -15,6 +15,11 @@ import os
 
 
 class Cnn(nn.Module):
+    """
+    model construction class:
+        1. 3 convolution layers and 2 fully connected layers
+        2. batchNormalization to limit overfitting
+    """
     def __init__(self):
         super(Cnn, self).__init__()
 
@@ -82,6 +87,12 @@ class Dataset(torch.utils.data.Dataset):
 
 
 def сreating_and_training_neural_network():
+    """
+        this function is intended for creating and training a neural network model
+        with saving the results to a special file - result.csv, as well as graphing
+        and analyzing the results.
+    """
+
     # set seed and random value
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     torch.manual_seed(1234)
@@ -215,8 +226,10 @@ def сreating_and_training_neural_network():
     # Answer: the model behaves perfectly, shows good results
     # When asked what is the best model to use). The best one! ( train_accuracy )
     # saving model
+    idx = []
     prob = []
     for i in range(len(train_accuracy)):
+        idx.append(i)
         prob.append(train_accuracy[i])
 
     submission = pd.DataFrame({'id': idx, 'label': prob})
